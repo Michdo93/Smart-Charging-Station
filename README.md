@@ -3,6 +3,29 @@ A Python REST API with which you can control the RSH-A16 USB Hub using flask and
 
 ## Installation
 
+At first you have to install [uhubctl](https://github.com/mvp/uhubctl):
+
+```
+sudo apt-get install libusb-1.0-0-dev
+git clone https://github.com/mvp/uhubctl
+cd uhubctl
+make
+sudo make install
+```
+
+Maybe you have to create with `sudo nano /etc/udev/rules.d/52-usb.rules` the following `udev rule`:
+
+```
+SUBSYSTEM=="usb", DRIVER=="usb", MODE="0666", ATTR{idVendor}=="0bda", ATTR{idProduct}=="0411"
+```
+
+Then you have to run:
+
+```
+sudo usermod -a -G dialout $USER
+sudo udevadm trigger --attr-match=subsystem=usb
+```
+
 You have to install following dependencies:
 
 ```
