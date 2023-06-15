@@ -1,0 +1,16 @@
+[Unit]
+Description=Smart Charging Station Service
+After=network-online.target
+
+[Service]
+Type=simple
+User=<user>
+Group=<user>
+UMask=002
+WorkingDirectory/home/<user>
+ExecStart=/usr/bin/python3 /home/<user>/smart_charging_station.py
+Restart=on-failure
+RestartSec=30s
+
+[Install]
+WantedBy=multi-user.target
